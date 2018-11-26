@@ -1,5 +1,5 @@
 class Portfolio < ApplicationRecord
-
+  include PlaceholderConcern
   validates_presence_of :title, :body, :main_image, :thumb_image
 
   # This is a custom scope defined via a Class Method. Called as Portfolio.angular
@@ -15,8 +15,8 @@ class Portfolio < ApplicationRecord
 
   def set_defaults
     # We will set default values for images in Portfolio, to ensure there is always one.
-    self.main_image ||= "https://via.placeholder.com/600x400"
-    self.thumb_image ||= "https://via.placeholder.com/350x200"
+    self.main_image ||= Placeholder.image_generator(height: '600', width: '400')
+    self.thumb_image ||= Placeholder.image_generator(height: '350', width: '200')
   end
 
 end
