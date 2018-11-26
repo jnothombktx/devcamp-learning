@@ -8,6 +8,7 @@ class PortfoliosController < ApplicationController
     @angular_portfolio_items = Portfolio.angular
   end
 
+  # New action "initializes" an item
   def new
     @portfolio_item = Portfolio.new
   end

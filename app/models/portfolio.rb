@@ -10,4 +10,13 @@ class Portfolio < ApplicationRecord
   # This is a custom scope defined via the scope keyword. Called as Portfolio.ruby_on_rails_portfolio_items
   scope :ruby_on_rails_portfolio_items, -> { where(subtitle: 'Ruby on Rails') }
 
+  # Implementing a Callback to set data defaults in model instead of migration
+  after_initialize :set_defaults
+
+  def set_defaults
+    # We will set default values for images in Portfolio, to ensure there is always one.
+    self.main_image ||= "https://via.placeholder.com/600x400"
+    self.thumb_image ||= "https://via.placeholder.com/350x200"
+  end
+
 end
